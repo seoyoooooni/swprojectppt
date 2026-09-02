@@ -1,0 +1,80 @@
+.archive-page {
+  width: min(100% - 80px, 1400px);
+  margin: 74px auto 120px;
+}
+
+.presentation-list {
+  border-top: 1px solid #cfd4da;
+}
+
+.presentation-row {
+  display: grid;
+  grid-template-columns: 228px minmax(0, 1fr) 210px;
+  align-items: center;
+  min-height: 92px;
+  padding: 0 18px;
+  border-bottom: 1px solid #cfd4da;
+  transition: background-color 160ms ease, padding 160ms ease;
+}
+
+.presentation-row:hover,
+.presentation-row:focus-visible {
+  padding-right: 26px;
+  padding-left: 26px;
+  background: #f1f3f5;
+  outline: none;
+}
+
+.presentation-row__week {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.presentation-row__title {
+  overflow: hidden;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.presentation-row__date {
+  justify-self: end;
+  color: #2f3b4c;
+  font-size: 18px;
+  letter-spacing: -0.025em;
+}
+
+@media (max-width: 820px) {
+  .archive-page {
+    width: min(100% - 32px, 1400px);
+    margin-top: 38px;
+  }
+
+  .presentation-row {
+    grid-template-columns: 112px minmax(0, 1fr);
+    min-height: 98px;
+    padding: 16px 6px;
+  }
+
+  .presentation-row:hover,
+  .presentation-row:focus-visible {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .presentation-row__week,
+  .presentation-row__title {
+    font-size: 18px;
+  }
+
+  .presentation-row__date {
+    grid-column: 2;
+    justify-self: start;
+    margin-top: 8px;
+    color: #667080;
+    font-size: 14px;
+  }
+}

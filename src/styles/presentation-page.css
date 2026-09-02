@@ -1,0 +1,9 @@
+.presentation-page {
+  min-height: calc(100vh - 82px);
+}
+
+@media (max-width: 680px) {
+  .presentation-page {
+    min-height: calc(100vh - 70px);
+  }
+}
