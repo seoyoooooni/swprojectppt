@@ -8,7 +8,6 @@ function SiteHeader() {
         <Link className="site-header__brand" to="/">
           S/W
         </Link>
-        <span className="site-header__title"></span>
       </div>
     </header>
   );

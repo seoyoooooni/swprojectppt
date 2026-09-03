@@ -1,80 +1,116 @@
 .archive-page {
-  width: min(100% - 80px, 1400px);
-  margin: 74px auto 120px;
+  width: min(100% - 72px, 1040px);
+  margin: 48px auto 100px;
 }
 
 .presentation-list {
-  border-top: 1px solid #cfd4da;
+  display: grid;
+  gap: 36px;
 }
 
 .presentation-row {
   display: grid;
-  grid-template-columns: 228px minmax(0, 1fr) 210px;
-  align-items: center;
-  min-height: 92px;
-  padding: 0 18px;
-  border-bottom: 1px solid #cfd4da;
-  transition: background-color 160ms ease, padding 160ms ease;
+  grid-template-columns: 14px minmax(0, 1fr) 140px;
+  gap: 22px;
+  align-items: start;
+  min-height: 78px;
+  padding: 10px 0;
+  color: #1d2023;
+  font-weight: 400;
 }
 
-.presentation-row:hover,
-.presentation-row:focus-visible {
-  padding-right: 26px;
-  padding-left: 26px;
-  background: #f1f3f5;
+a.presentation-row {
+  transition: opacity 160ms ease;
+}
+
+a.presentation-row:hover,
+a.presentation-row:focus-visible {
+  opacity: 0.58;
   outline: none;
 }
 
+.presentation-row__status {
+  width: 12px;
+  height: 12px;
+  margin-top: 5px;
+  border-radius: 50%;
+}
+
+.presentation-row__status {
+  background: #2f765a;
+}
+
+.presentation-row__content {
+  display: grid;
+  gap: 5px;
+}
+
+.presentation-row__week,
+.presentation-row__title,
+.presentation-row__date {
+  font-weight: 400;
+}
+
 .presentation-row__week {
-  font-size: 22px;
-  font-weight: 800;
+  color: #737981;
+  font-size: 18px;
   letter-spacing: -0.025em;
+  line-height: 1.25;
 }
 
 .presentation-row__title {
   overflow: hidden;
-  font-size: 22px;
-  font-weight: 500;
+  color: #1d2023;
+  font-size: 24px;
   letter-spacing: -0.045em;
+  line-height: 1.2;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .presentation-row__date {
   justify-self: end;
-  color: #2f3b4c;
+  color: #737981;
   font-size: 18px;
   letter-spacing: -0.025em;
+  line-height: 1.25;
 }
 
-@media (max-width: 820px) {
+
+@media (max-width: 680px) {
   .archive-page {
-    width: min(100% - 32px, 1400px);
-    margin-top: 38px;
+    width: min(100% - 36px, 1040px);
+    margin: 32px auto 72px;
+  }
+
+  .presentation-list {
+    gap: 24px;
   }
 
   .presentation-row {
-    grid-template-columns: 112px minmax(0, 1fr);
-    min-height: 98px;
-    padding: 16px 6px;
+    grid-template-columns: 11px minmax(0, 1fr);
+    gap: 14px;
+    min-height: 76px;
+    padding: 8px 0;
   }
 
-  .presentation-row:hover,
-  .presentation-row:focus-visible {
-    padding-right: 12px;
-    padding-left: 12px;
+  .presentation-row__status {
+    width: 10px;
+    height: 10px;
   }
 
-  .presentation-row__week,
+  .presentation-row__week {
+    font-size: 16px;
+  }
+
   .presentation-row__title {
-    font-size: 18px;
+    font-size: 19px;
   }
 
   .presentation-row__date {
     grid-column: 2;
     justify-self: start;
-    margin-top: 8px;
-    color: #667080;
+    margin-top: -6px;
     font-size: 14px;
   }
 }
