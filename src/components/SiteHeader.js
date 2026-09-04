@@ -5,9 +5,7 @@ function SiteHeader() {
   return (
     <header className="site-header">
       <div className="site-header__inner">
-        <Link className="site-header__brand" to="/">
-          S/W
-        </Link>
+        <Link className="site-header__brand" to="/">S<span>/</span>W PROJECT ARCHIVE</Link>
       </div>
     </header>
   );

@@ -1,43 +1,29 @@
 .site-header {
-  width: min(100% - 72px, 1040px);
+  width: min(100% - 80px, 1180px);
   margin: 0 auto;
-  padding: 34px 0 40px;
-  border-bottom: 1px solid #dedfdd;
 }
 
 .site-header__inner {
-  display: block;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .site-header__brand {
-  display: inline-block;
-  color: #141817;
-  font-size: 38px;
+  color: #1b1b1b;
+  font-size: 18px;
   font-weight: 700;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.04em;
   line-height: 1;
 }
 
-.site-header__description {
-  margin: 16px 0 0;
-  color: #747981;
-  font-size: 20px;
-  font-weight: 400;
-  letter-spacing: -0.035em;
+.site-header__brand span {
+  color: #777;
 }
 
 @media (max-width: 680px) {
-  .site-header {
-    width: min(100% - 36px, 1040px);
-    padding: 28px 0 38px;
-  }
-
-  .site-header__brand {
-    font-size: 34px;
-  }
-
-  .site-header__description {
-    margin-top: 12px;
-    font-size: 16px;
-  }
+  .site-header { width: min(100% - 36px, 1180px); }
+  .site-header__inner { height: 60px; }
+  .site-header__brand { font-size: 16px; }
 }
