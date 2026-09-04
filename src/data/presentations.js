@@ -8,4 +8,8 @@ const presentations = [
   }
 ];
 
+export function getPresentation(presentationId) {
+  return presentations.find(({ id }) => id === presentationId);
+}
+
 export default presentations;
