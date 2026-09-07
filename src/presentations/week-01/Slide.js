@@ -9,6 +9,20 @@ function SlideHeading({ slide }) {
 
 const Frame = ({ slide, children }) => <><SlideHeading slide={slide} />{children}</>;
 
+function getExpandedCardIndex(items) {
+  if (items.length !== 3) return -1;
+
+  return items.reduce((longest, item, index) => {
+    const itemLength = `${item.title ?? ''}${item.text ?? ''}`.replace(/\s/g, '').length;
+    const longestLength = `${items[longest].title ?? ''}${items[longest].text ?? ''}`.replace(/\s/g, '').length;
+    return itemLength > longestLength ? index : longest;
+  }, 0);
+}
+
+function adaptiveGridClass(baseClass, items) {
+  return `${baseClass} week01-adaptive-cards week01-adaptive-cards--expanded-${getExpandedCardIndex(items)}`;
+}
+
 function Cover({ slide }) {
   return (
     <div className="week01-cover-copy">
@@ -62,26 +76,33 @@ function Bullets({ slide }) {
 }
 
 function Motivation({ slide }) {
-  return <Frame slide={slide}><ul className="week01-motivation">{slide.items.map(item => <li key={item.title}><h2>{item.title}</h2><p>{item.text}</p></li>)}</ul></Frame>;
+  const expandedIndex = getExpandedCardIndex(slide.items);
+  return <Frame slide={slide}><ul className={adaptiveGridClass('week01-motivation', slide.items)}>{slide.items.map((item, index) => <li className={index === expandedIndex ? 'is-expanded' : ''} key={item.title}><h2>{item.title}</h2><p>{item.text}</p></li>)}</ul></Frame>;
 }
 
 function Recording({ slide }) {
+  const cards = [slide.calendar, ...slide.items];
+  const expandedIndex = getExpandedCardIndex(cards);
+
   return <Frame slide={slide}>
-    <div className="week01-recording">
-      <section><h2>{slide.calendar.title}</h2><p>{slide.calendar.text}</p></section>
-      {slide.items.map(item => <section key={item.title}><h2>{item.title}</h2><p>{item.text}</p></section>)}
+    <div className={adaptiveGridClass('week01-recording', cards)}>
+      {cards.map((item, index) => <section className={index === expandedIndex ? 'is-expanded' : ''} key={`${item.title}-${index}`}><h2>{item.title}</h2><p>{item.text}</p></section>)}
     </div>
     <p className="week01-category-caption">{slide.categories}</p>
   </Frame>;
 }
 
 function Social({ slide }) {
+  const expandedIndex = getExpandedCardIndex(slide.items);
+
   return <Frame slide={slide}>
-    <div className="week01-social">
-      <section><h2>{slide.account.title}</h2><p>{slide.account.text}</p></section>
-      <section><h2>{slide.privacy.title}</h2><p>{slide.privacy.levels.join(' · ')}</p><p>{slide.privacy.text}</p></section>
-      <section><h2>{slide.together.title}</h2><p>{slide.together.text}</p><p>최대 {slide.together.limit}{slide.together.unit}</p></section>
-      <section><h2>{slide.recommendation.title}</h2><p>{slide.recommendation.text}</p></section>
+    <div className={adaptiveGridClass('week01-social', slide.items)}>
+      {slide.items.map((item, index) => (
+        <section className={index === expandedIndex ? 'is-expanded' : ''} key={`${item.title}-${index}`}>
+          <h2>{item.title}</h2>
+          <p>{item.text}</p>
+        </section>
+      ))}
     </div>
   </Frame>;
 }
@@ -102,7 +123,24 @@ function Roadmap({ slide }) {
   return <Frame slide={slide}><ul className="week01-roadmap">{slide.tasks.map(task => <li key={task.title}><h2>{task.title}</h2><p>{task.text}</p></li>)}</ul></Frame>;
 }
 
-const slideTypes = { motivation: Motivation, recording: Recording, social: Social, stack: Stack, recommendation: Recommendation, roadmap: Roadmap, bullets: Bullets, cover: Cover, reason: Reason, record: Record, features: Features, questions: Questions, ai: Ai, tech: Tech, next: Next };
+function Table({ slide }) {
+  const gridStyle = { gridTemplateColumns: `repeat(${slide.columns.length}, minmax(0, 1fr))` };
+
+  return <Frame slide={slide}>
+    <div className="week01-flex-table">
+      <div className="week01-flex-table-head" style={gridStyle}>
+        {slide.columns.map(column => <strong key={column}>{column}</strong>)}
+      </div>
+      {slide.rows.map((row, rowIndex) => (
+        <div className="week01-flex-table-row" style={gridStyle} key={rowIndex}>
+          {slide.columns.map((_, columnIndex) => <span key={columnIndex}>{row[columnIndex] ?? ''}</span>)}
+        </div>
+      ))}
+    </div>
+  </Frame>;
+}
+
+const slideTypes = { motivation: Motivation, recording: Recording, social: Social, stack: Stack, recommendation: Recommendation, roadmap: Roadmap, table: Table, bullets: Bullets, cover: Cover, reason: Reason, record: Record, features: Features, questions: Questions, ai: Ai, tech: Tech, next: Next };
 
 function Slide({ slide }) {
   const Content = slideTypes[slide.type];

@@ -23,5 +23,5 @@ test('1주차 발표를 열고 키보드로 다음 장을 이동한다', () => {
   fireEvent.click(screen.getByText('프로젝트 주제'));
   expect(screen.getByText(/문화생활 기록 및/)).toBeInTheDocument();
   fireEvent.keyDown(window, { key: 'ArrowRight' });
-  expect(screen.getByText('주제 선정 이유')).toBeInTheDocument();
+  expect(screen.getByText('사용자 문제와 해결 방법')).toBeInTheDocument();
 });

@@ -136,7 +136,7 @@ Codex에 요청할 때는 예를 들어 “2주차 presentation.json의 내용�
 | 1 | cover | `title`, `description` |
 | 2 | motivation | `items` 안의 `title`, `text` |
 | 3 | recording | `calendar` 캘린더 기능 설명, `items` 기록 기능 설명, `categories` |
-| 4 | social | `account`, `privacy`, `together`, `recommendation` |
+| 4 | social | `items` 안의 `title`, `text` |
 | 5 | stack | `items` 안의 `label`, `name`, `detail` |
 | 6 | recommendation | `stages`, `explanation`, `initial`, `later` |
 | 7 | roadmap | `tasks` 안의 `title`, `text` |
