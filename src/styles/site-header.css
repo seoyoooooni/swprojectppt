@@ -12,8 +12,9 @@
 
 .site-header__brand {
   color: #1b1b1b;
+  font-family: 'NanumSquareNeo', 'Noto Sans KR', sans-serif;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 900;
   letter-spacing: -0.04em;
   line-height: 1;
 }
