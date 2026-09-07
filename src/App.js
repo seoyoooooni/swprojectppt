@@ -5,7 +5,7 @@ import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   return (
-    <HashRouter>
+    <HashRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <Routes>
         <Route path="/" element={<ArchivePage />} />
         <Route path="/presentations/:presentationId" element={<PresentationPage />} />

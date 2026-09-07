@@ -1,25 +1,17 @@
 import { Navigate, useParams } from 'react-router-dom';
-import PageLayout from '../components/PageLayout';
-import { getPresentation } from '../data/presentations';
-import { getPresentationContent } from '../presentations/presentationPages';
-import '../styles/presentation-page.css';
+import { getPresentation, getPresentationDesign } from '../data/presentations';
+import Presentation from '../presentations/shared/Presentation';
 
 function PresentationPage() {
   const { presentationId } = useParams();
   const presentation = getPresentation(presentationId);
-  const PresentationContent = getPresentationContent(presentationId);
+  const Design = getPresentationDesign(presentationId);
 
-  if (!presentation || !PresentationContent) {
+  if (!presentation || !presentation.slides?.length || !Design) {
     return <Navigate to="/not-found" replace />;
   }
 
-  return (
-    <PageLayout>
-      <div className="presentation-page">
-        <PresentationContent />
-      </div>
-    </PageLayout>
-  );
+  return <Presentation key={presentation.id} presentation={presentation} Design={Design} />;
 }
 
 export default PresentationPage;

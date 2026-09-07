@@ -1,0 +1,159 @@
+{
+  "week": "01",
+  "title": "프로젝트 주제",
+  "summary": "주제 선정 배경과 핵심 기능, 개발 계획",
+  "date": "260909",
+  "slides": [
+    {
+      "type": "cover",
+      "title": "Sceneary",
+      "description": "문화생활 기록 및 공유 서비스"
+    },
+    {
+      "type": "motivation",
+      "title": "주제 선정 이유",
+      "items": [
+        {
+          "title": "흩어진 기록을 한곳에",
+          "text": "갤러리, SNS, 메모장과 종이 티켓에 흩어진 기록을 한 번에 보기 어려움"
+        },
+        {
+          "title": "그날의 경험까지 기억",
+          "text": "누구와 언제, 어디서 무엇을 봤는지 함께 확인하고 싶음"
+        },
+        {
+          "title": "모든 문화생활을 기록",
+          "text": "영화·드라마·뮤지컬·연극·전시회·박물관·책을 한 서비스에 기록"
+        },
+        {
+          "title": "함께 본 친구들과 공동 기록",
+          "text": "친구 여러 명과 하나의 기록을 함께 올리고 싶음"
+        }
+      ]
+    },
+    {
+      "type": "recording",
+      "title": "MVP / 기록 기능",
+      "calendar": {
+        "title": "월간 캘린더",
+        "text": "날짜 칸에 그날의 기록 사진을 최대 4분할로 표시"
+      },
+      "items": [
+        {
+          "title": "검색하거나 직접 추가",
+          "text": "분야별 API로 콘텐츠 검색. API가 없으면 제목과 사진을 직접 추가"
+        },
+        {
+          "title": "빠르게 저장, 나중에 보완",
+          "text": "최소 항목으로 먼저 기록하고, 선택 입력 항목은 나중에 수정"
+        },
+        {
+          "title": "하루를 넘기는 기록",
+          "text": "영화·드라마·책에 시작일과 종료일 설정. 해당 기간의 모든 날짜에 사진 표시"
+        }
+      ],
+      "categories": "영화 · 드라마 · 뮤지컬 · 연극 · 전시회 · 박물관 · 책"
+    },
+    {
+      "type": "social",
+      "title": "MVP / 계정과 공유 기능",
+      "account": {
+        "title": "로그인·회원가입",
+        "text": "내 기록을 저장하고 친구와 연결"
+      },
+      "privacy": {
+        "title": "공개 범위 설정",
+        "levels": [
+          "공개",
+          "친구 공개",
+          "비공개"
+        ],
+        "text": "계정과 게시물별로 각각 설정"
+      },
+      "together": {
+        "title": "친구와 함께 올리기",
+        "limit": "4",
+        "unit": "명까지 검토 중",
+        "text": "함께 본 친구 여러 명과 하나의 기록을 공동으로 게시"
+      },
+      "recommendation": {
+        "title": "AI 추천",
+        "text": "기록한 취향을 바탕으로 다른 문화 분야의 콘텐츠도 추천"
+      }
+    },
+    {
+      "type": "stack",
+      "title": "기술 스택",
+      "items": [
+        {
+          "label": "프론트엔드",
+          "name": "React Native / Swift",
+          "detail": "두 후보 중 선택 예정"
+        },
+        {
+          "label": "백엔드",
+          "name": "FastAPI",
+          "detail": "Python"
+        },
+        {
+          "label": "데이터베이스",
+          "name": "Supabase",
+          "detail": "PostgreSQL"
+        }
+      ]
+    },
+    {
+      "type": "recommendation",
+      "title": "AI 추천 기능",
+      "stages": [
+        {
+          "title": "사용자 취향 파악",
+          "text": "장르·키워드·평점으로 취향 벡터 구성",
+          "detail": "동행인·장소·시간도 추천 상황에 반영"
+        },
+        {
+          "title": "콘텐츠 간 연결",
+          "text": "작품·공연·전시를 태그 그래프로 연결",
+          "detail": "주제·분위기·장르가 비슷한 콘텐츠 탐색"
+        },
+        {
+          "title": "교차 매체 추천",
+          "text": "영화에서 전시와 책으로 추천 확장",
+          "detail": "같은 종류의 콘텐츠도 함께 추천"
+        }
+      ],
+      "initial": "초기: 사전 학습 임베딩과 태그를 활용해 추천 후보 검색",
+      "later": "고도화: 저장·선호도 데이터를 모아 추천 순위 개선과 추가 학습 검토",
+      "notes": "구현 제안: 콘텐츠 설명·태그 임베딩을 평점으로 가중해 취향을 표현하고 동행인·장소·시간은 상황 필터 또는 순위 조정에 활용. 신규 사용자는 선호 장르를 선택. 추가 학습 전 태그 기반 결과와 비교 평가. 추천 이유는 실제 일치한 기록·태그만 사용.",
+      "sources": [
+        {
+          "title": "Sentence Transformers: Semantic Search",
+          "url": "https://www.sbert.net/examples/sentence_transformer/applications/semantic-search/README.html"
+        },
+        {
+          "title": "Sentence Transformers: Training Overview",
+          "url": "https://www.sbert.net/docs/sentence_transformer/training_overview.html"
+        }
+      ],
+      "explanation": "추천한 콘텐츠와 사용자 기록의 공통점을 추천 이유로 표시"
+    },
+    {
+      "type": "roadmap",
+      "title": "다음 주 할 일",
+      "tasks": [
+        {
+          "title": "화면 흐름 설계",
+          "text": "기록 작성, 월간 캘린더, 공동 기록 화면 초안 제작"
+        },
+        {
+          "title": "기록·공개 정책 정리",
+          "text": "필수 입력, 기간 표시, 계정·게시물 공개 범위와 공동 기록 권한 정리"
+        },
+        {
+          "title": "기술과 데이터 조사",
+          "text": "프론트 기술 비교, 분야별 API 확인, 임베딩 추천 방식 조사"
+        }
+      ]
+    }
+  ]
+}

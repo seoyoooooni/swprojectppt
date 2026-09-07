@@ -22,6 +22,7 @@
   background: #1b1b1b;
   color: #f4f4f4;
   font-size: 11px;
+  font-family: 'NanumSquareNeo', sans-serif;
   font-weight: 600;
 }
 
@@ -60,9 +61,9 @@
 
 .presentation-row__title {
   overflow: hidden;
-  font-family: 'Black Han Sans', 'Noto Sans KR', sans-serif;
-  font-size: 27px;
-  font-weight: 400;
+  font-size: 30px;
+  font-family: 'NanumSquareNeo', sans-serif;
+  font-weight: 800;
   letter-spacing: -.025em;
   line-height: 1.25;
   text-overflow: ellipsis;
