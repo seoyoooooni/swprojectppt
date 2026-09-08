@@ -11,11 +11,24 @@
     },
     {
       "type": "table",
-      "title": "사용자 문제와 해결 방법",
+      "title": "기존 문제",
       "description": "",
-      "columns": ["사용자 문제", "해결 방법"],
+      "columns": ["사용자 문제"],
       "rows": [
-        ["문화생활 기록이 여러 앱과 오프라인에 흩어짐", "모든것을 한곳에서 기록"],
+        ["문화생활 기록이 여러 앱과 오프라인에 흩어짐"],
+        ["기록 과정이 번거로움"],
+        ["새로운 콘텐츠를 찾기 어려움"],
+        ["친구와 감상을 함께 남기고 기록해두기 어려움"],
+        ["지난 문화생활을 찾기 어려움"]
+      ]
+    },
+    {
+      "type": "solutions",
+      "title": "해결 방법",
+      "description": "",
+      "columns": ["기존 문제", "해결 방법"],
+      "rows": [
+        ["문화생활 기록이 여러 앱과 오프라인에 흩어짐", "모든 것을 한 곳에서 기록"],
         ["기록 과정이 번거로움", "별점 중심의 빠른 기록 후 나중에 상세 기록"],
         ["새로운 콘텐츠를 찾기 어려움", "AI 교차 매체 추천"],
         ["친구와 감상을 함께 남기고 기록해두기 어려움", "친구 공동 기록 기능"],
@@ -32,7 +45,7 @@
         },
         {
           "title": "프로젝트 목적",
-          "text": "사용자가 모든 문화생활을 간단하게 기록하고 친구와 공유할수있는 서비스를 만드는 것. 기록이 쌓일수록 사용자의 취향을 분석해 여러 콘텐츠들로 관심사를 확장해주는 추천서비스를 제공하고자 함"
+          "text": "사용자가 서로 다른 문화생활을 하나의 캘린더에 간단하게 기록하고 친구와 공유할수있는 서비스를 만드는 것. 기록이 쌓일수록 사용자의 취향을 분석해 여러 콘텐츠들로 관심사를 확장해주는 추천서비스를 제공하고자 함"
         },
         {
           "title": "함께 본 사람들과 공동 기록",
@@ -107,27 +120,52 @@
       ]
     },
     {
+      "type": "api",
+      "title": "분야별 콘텐츠 API",
+      "description": "분야별 전문 API에서 검색하고, 결과가 없으면 사용자가 직접 등록",
+      "items": [
+        { "category": "영화·드라마", "api": "TMDB API", "data": "제목, 줄거리, 장르, 포스터, 개봉일·방영일", "condition": "API 키와 출처 표시 필요" },
+        { "category": "뮤지컬·연극", "api": "KOPIS Open API", "data": "공연명, 장르, 공연 기간, 공연장, 포스터, 공연 상태", "condition": "서비스 키 필요, XML 응답" },
+        { "category": "전시·박물관", "api": "문화포털 Open API", "data": "공연·전시 상세 정보, 미술관·박물관 시설 정보", "condition": "공공데이터포털 인증키 필요" },
+        { "category": "책", "api": "카카오 도서 검색 API", "data": "제목, 저자, 출판사, ISBN, 책 소개, 표지", "condition": "REST API 키와 호출 한도 확인" }
+      ],
+      "note": "API마다 다른 형식은 공통 콘텐츠 구조로 변환해 저장하고, 누락된 콘텐츠는 직접 등록으로 보완",
+      "sources": [
+        {
+          "title": "TMDB API Documentation",
+          "url": "https://developer.themoviedb.org/docs/getting-started"
+        },
+        {
+          "title": "KOPIS OPEN API 개발가이드",
+          "url": "https://kopis.or.kr/upload/openApi/%EA%B3%B5%EC%97%B0%EC%98%88%EC%88%A0%ED%86%B5%ED%95%A9%EC%A0%84%EC%82%B0%EB%A7%9DOpenAPI%EA%B0%9C%EB%B0%9C%EA%B0%80%EC%9D%B4%EB%93%9C.pdf"
+        },
+        {
+          "title": "문화포털 오픈 API 사용가이드",
+          "url": "https://www.culture.go.kr/portal/main/contents.do?menuNo=200155"
+        },
+        {
+          "title": "카카오 도서 검색 REST API",
+          "url": "https://developers.kakao.com/docs/ko/daum-search/dev-guide#search-book"
+        }
+      ]
+    },
+    {
       "type": "recommendation",
       "title": "AI 추천 기능",
       "stages": [
         {
           "title": "사용자 취향 파악",
-          "text": "장르·키워드·평점으로 취향 벡터 구성",
-          "detail": "동행인·장소·시간도 추천 상황에 반영"
+          "text": "높은 별점을 준 콘텐츠의 설명과 태그를 임베팅에 취향 벡터를 만듦",
+          "detail": ""
         },
         {
-          "title": "콘텐츠 간 연결",
-          "text": "작품·공연·전시를 태그 그래프로 연결",
-          "detail": "주제·분위기·장르가 비슷한 콘텐츠 탐색"
-        },
-        {
-          "title": "교차 매체 추천",
-          "text": "영화에서 전시와 책으로 추천 확장",
-          "detail": "같은 종류의 콘텐츠도 함께 추천"
+          "title": "콘텐츠 간 연결, 교차 매체 추천",
+          "text": "유사한 콘텐츠를 다른 매체에서도 검색",
+          "detail": ""
         }
       ],
       "initial": "초기: 사전 학습 임베딩과 태그를 활용해 추천 후보 검색",
-      "later": "고도화: 저장·선호도 데이터를 모아 추천 순위 개선과 추가 학습 검토",
+      "later": "고도화: 저장·별점 데이터를 모아 추천 순위 개선과 추가 학습",
       "notes": "구현 제안: 콘텐츠 설명·태그 임베딩을 평점으로 가중해 취향을 표현하고 동행인·장소·시간은 상황 필터 또는 순위 조정에 활용. 신규 사용자는 선호 장르를 선택. 추가 학습 전 태그 기반 결과와 비교 평가. 추천 이유는 실제 일치한 기록·태그만 사용.",
       "sources": [
         {
@@ -138,8 +176,7 @@
           "title": "Sentence Transformers: Training Overview",
           "url": "https://www.sbert.net/docs/sentence_transformer/training_overview.html"
         }
-      ],
-      "explanation": "추천한 콘텐츠와 사용자 기록의 공통점을 추천 이유로 표시"
+      ]
     },
     {
       "type": "roadmap",

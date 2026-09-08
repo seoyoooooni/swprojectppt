@@ -1,0 +1,14 @@
+.presentation-table { width: 100%; overflow: hidden; background: #fff; }
+.presentation-table-head, .presentation-table-row { display: grid; }
+.presentation-table-head { min-height: 58px; background: #1b1b1b; color: #fff; }
+.presentation-table-head strong, .presentation-table-row span { display: flex; align-items: center; min-width: 0; padding: 15px 22px; border-right: 1px solid #d5d5d5; font-size: clamp(15px, 1.35vw, 19px); line-height: 1.45; word-break: keep-all; overflow-wrap: anywhere; }
+.presentation-table-head strong { border-color: #555; font-weight: 800; }
+.presentation-table-head strong:last-child, .presentation-table-row span:last-child { border-right: 0; }
+.presentation-table-row { min-height: 76px; border-bottom: 1px solid #d5d5d5; }
+.presentation-table-row:nth-child(odd) { background: #ebebeb; }
+.presentation-table-row:last-child { border-bottom: 0; }
+
+@media (max-width: 760px) {
+  .presentation-table { overflow-x: auto; }
+  .presentation-table-head, .presentation-table-row { min-width: 620px; }
+}

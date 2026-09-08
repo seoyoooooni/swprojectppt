@@ -1,3 +1,5 @@
+import PresentationTable from '../../components/PresentationTable';
+
 function SlideHeading({ slide }) {
   return (
     <div className="week01-heading">
@@ -111,6 +113,18 @@ function Stack({ slide }) {
   return <Frame slide={slide}><dl className="week01-stack">{slide.items.map(item => <div key={item.label}><dt>{item.label}</dt><dd><strong>{item.name}</strong><span>{item.detail}</span></dd></div>)}</dl></Frame>;
 }
 
+function Api({ slide }) {
+  return <Frame slide={slide}>
+    <div className="week01-api-table">
+      <div className="week01-api-head"><span>분야</span><span>사용 API</span><span>가져올 데이터</span><span>확인 사항</span></div>
+      {slide.items.map(item => <div className="week01-api-row" key={item.category}>
+        <strong>{item.category}</strong><b>{item.api}</b><span>{item.data}</span><small>{item.condition}</small>
+      </div>)}
+    </div>
+    <p className="week01-api-note">{slide.note}</p>
+  </Frame>;
+}
+
 function Recommendation({ slide }) {
   return <Frame slide={slide}>
     <ul className="week01-recommendation-stages">{slide.stages.map(stage => <li key={stage.title}><h2>{stage.title}</h2><p>{stage.text}</p><p className="week01-stage-detail">{stage.detail}</p></li>)}</ul>
@@ -124,23 +138,23 @@ function Roadmap({ slide }) {
 }
 
 function Table({ slide }) {
-  const gridStyle = { gridTemplateColumns: `repeat(${slide.columns.length}, minmax(0, 1fr))` };
+  return <Frame slide={slide}><PresentationTable columns={slide.columns} rows={slide.rows} /></Frame>;
+}
 
+function Solutions({ slide }) {
   return <Frame slide={slide}>
-    <div className="week01-flex-table">
-      <div className="week01-flex-table-head" style={gridStyle}>
-        {slide.columns.map(column => <strong key={column}>{column}</strong>)}
-      </div>
-      {slide.rows.map((row, rowIndex) => (
-        <div className="week01-flex-table-row" style={gridStyle} key={rowIndex}>
-          {slide.columns.map((_, columnIndex) => <span key={columnIndex}>{row[columnIndex] ?? ''}</span>)}
-        </div>
-      ))}
-    </div>
+    <div className="week01-solutions-labels"><strong>사용자 문제</strong><strong>Sceneary 해결 방법</strong></div>
+    <ol className="week01-solutions">
+      {slide.rows.map((row, index) => <li key={index}>
+        <p>{row[0]}</p>
+        <span className="week01-solution-arrow" aria-hidden="true" />
+        <strong>{row[1]}</strong>
+      </li>)}
+    </ol>
   </Frame>;
 }
 
-const slideTypes = { motivation: Motivation, recording: Recording, social: Social, stack: Stack, recommendation: Recommendation, roadmap: Roadmap, table: Table, bullets: Bullets, cover: Cover, reason: Reason, record: Record, features: Features, questions: Questions, ai: Ai, tech: Tech, next: Next };
+const slideTypes = { motivation: Motivation, recording: Recording, social: Social, stack: Stack, api: Api, recommendation: Recommendation, roadmap: Roadmap, table: Table, solutions: Solutions, bullets: Bullets, cover: Cover, reason: Reason, record: Record, features: Features, questions: Questions, ai: Ai, tech: Tech, next: Next };
 
 function Slide({ slide }) {
   const Content = slideTypes[slide.type];
