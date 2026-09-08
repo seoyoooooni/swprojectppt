@@ -20,8 +20,7 @@
 .week01-presentation button { font: inherit; }
 .week01-header, .week01-footer { display: flex; align-items: center; justify-content: space-between; z-index: 2; }
 .week01-header { box-shadow: inset 0 -5px var(--ink); }
-.week01-brand { border: 0; padding: 0; background: none; cursor: pointer; color: var(--ink); font-size: 17px; font-weight: 700; letter-spacing: -.05em; }
-.week01-brand span { color: var(--accent); }
+.week01-page-number { color: var(--ink); font-size: 15px; font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: .04em; }
 .week01-close { border: 0; padding: 0; background: none; color: var(--muted); cursor: pointer; font-size: 10px; }
 .week01-close span { margin-left: 8px; color: var(--ink); font-size: 20px; vertical-align: -1px; }
 
@@ -33,20 +32,19 @@
 .week01-slide p { color: var(--muted); }
 .week01-description { max-width: 800px; margin: 0; color: var(--muted); font-size: clamp(15px, 1.2vw, 18px); line-height: 1.72; }
 .week01-heading { margin-bottom: clamp(28px, 4vh, 44px); }
-.week01-heading::after { content: ''; display: block; width: 74px; height: 9px; margin-top: 22px; background: var(--accent); }
 .week01-heading .week01-description { max-width: 900px; font-size: 16px; }
 
 .week01-footer { gap: 18px; }
-.week01-progress { flex: 1; height: 7px; background: #d5d5d5; }
+.week01-progress { flex: 1; height: 5px; background: #d5d5d5; }
 .week01-progress span { display: block; height: 100%; background: var(--accent); transition: width .25s ease; }
-.week01-count { min-width: 48px; color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
-.week01-count b { color: var(--ink); }
 
 .week01-slide--cover { justify-content: center; }
 .week01-cover-copy { width: min(100%, 980px); padding-left: clamp(24px, 3vw, 44px); border-left: 14px solid var(--accent); }
 .week01-cover-copy h1 { margin-bottom: 28px; font-size: clamp(50px, 6.2vw, 88px); line-height: 1.06; }
 .week01-slide--cover h1 { font-weight: 800; }
 .week01-cover-copy .week01-description { max-width: 760px; font-size: clamp(16px, 1.35vw, 20px); }
+.week01-closing { width: 100%; display: grid; place-items: center; text-align: center; }
+.week01-closing h1 { margin: 0; font-size: clamp(50px, 6.2vw, 88px); }
 
 .week01-reason-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(26px, 4vw, 60px); margin: 0; padding: 0; list-style: none; }
 .week01-reason-list li { padding-top: 18px; border-top: 10px solid var(--ink); }
@@ -178,7 +176,8 @@
 .week01-solutions-labels { display: grid; grid-template-columns: minmax(0, 1fr) 74px minmax(0, 1fr); margin: 0 0 10px; color: var(--muted); font-size: 12px; }
 .week01-solutions-labels strong:first-child { grid-column: 1; padding-left: 22px; }
 .week01-solutions-labels strong:last-child { grid-column: 3; padding-left: 22px; }
-.week01-solutions { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.week01-problems, .week01-solutions { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.week01-problems li { min-height: 64px; display: flex; align-items: center; padding: 15px 22px; background: var(--white); color: var(--ink); font-size: clamp(14px, 1.25vw, 18px); line-height: 1.45; word-break: keep-all; overflow-wrap: anywhere; }
 .week01-solutions li { display: grid; grid-template-columns: minmax(0, 1fr) 74px minmax(0, 1fr); align-items: center; min-height: 64px; }
 .week01-solutions p, .week01-solutions strong { min-width: 0; margin: 0; padding: 15px 22px; font-size: clamp(14px, 1.25vw, 18px); line-height: 1.45; word-break: keep-all; overflow-wrap: anywhere; }
 .week01-solutions p { align-self: stretch; display: flex; align-items: center; background: var(--white); color: var(--ink); }
@@ -201,6 +200,7 @@
   .week01-stack dd strong { font-size: 25px; }
   .week01-category-caption { line-height: 1.8; }
   .week01-solutions-labels, .week01-solutions li { grid-template-columns: minmax(0, 1fr) 46px minmax(0, 1fr); }
+  .week01-problems li { padding: 12px 14px; font-size: 13px; }
   .week01-solutions p, .week01-solutions strong { padding: 12px 14px; font-size: 13px; }
   .week01-solution-arrow { margin: 0 8px; }
 }

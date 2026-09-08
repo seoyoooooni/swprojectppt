@@ -34,6 +34,10 @@ function Cover({ slide }) {
   );
 }
 
+function Closing({ slide }) {
+  return <div className="week01-closing"><h1>{slide.title}</h1></div>;
+}
+
 function Reason({ slide }) {
   return <Frame slide={slide}><ul className="week01-reason-list">{slide.items.map(item => <li key={item.title}><h2>{item.title}</h2><p>{item.text}</p></li>)}</ul></Frame>;
 }
@@ -138,12 +142,20 @@ function Roadmap({ slide }) {
 }
 
 function Table({ slide }) {
+  if (slide.columns.length === 1) {
+    return <Frame slide={slide}>
+      <ol className="week01-problems">
+        {slide.rows.map((row, index) => <li key={index}>{row[0]}</li>)}
+      </ol>
+    </Frame>;
+  }
+
   return <Frame slide={slide}><PresentationTable columns={slide.columns} rows={slide.rows} /></Frame>;
 }
 
 function Solutions({ slide }) {
   return <Frame slide={slide}>
-    <div className="week01-solutions-labels"><strong>사용자 문제</strong><strong>Sceneary 해결 방법</strong></div>
+    <div className="week01-solutions-labels"><strong></strong><strong></strong></div>
     <ol className="week01-solutions">
       {slide.rows.map((row, index) => <li key={index}>
         <p>{row[0]}</p>
@@ -154,7 +166,7 @@ function Solutions({ slide }) {
   </Frame>;
 }
 
-const slideTypes = { motivation: Motivation, recording: Recording, social: Social, stack: Stack, api: Api, recommendation: Recommendation, roadmap: Roadmap, table: Table, solutions: Solutions, bullets: Bullets, cover: Cover, reason: Reason, record: Record, features: Features, questions: Questions, ai: Ai, tech: Tech, next: Next };
+const slideTypes = { motivation: Motivation, recording: Recording, social: Social, stack: Stack, api: Api, recommendation: Recommendation, roadmap: Roadmap, table: Table, solutions: Solutions, bullets: Bullets, cover: Cover, closing: Closing, reason: Reason, record: Record, features: Features, questions: Questions, ai: Ai, tech: Tech, next: Next };
 
 function Slide({ slide }) {
   const Content = slideTypes[slide.type];
