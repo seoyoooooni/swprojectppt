@@ -9,9 +9,15 @@ function PresentationControls({ current, total }) {
   );
 }
 
-function Design({ slide, current, total, direction, onClose }) {
+function Design({ slide, current, total, direction, onClose, onTouchStart, onTouchEnd, onTouchCancel }) {
   return (
-    <main className="week01-presentation" aria-live="polite">
+    <main
+      className="week01-presentation"
+      aria-live="polite"
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+      onTouchCancel={onTouchCancel}
+    >
       <header className="week01-header">
         <span className="week01-page-number">{String(current + 1).padStart(2, '0')}</span>
         <button className="week01-close" onClick={onClose}><span>×</span></button>

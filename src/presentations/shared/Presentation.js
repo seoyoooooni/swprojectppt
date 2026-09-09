@@ -1,5 +1,8 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+const SWIPE_THRESHOLD = 50;
+const SWIPE_DIRECTION_RATIO = 1.2;
 
 function Presentation({ presentation, Design }) {
   const { slides } = presentation;
@@ -7,6 +10,7 @@ function Presentation({ presentation, Design }) {
   const [index, setCurrent] = useState(0);
   const current = Math.min(index, slides.length - 1);
   const [direction, setDirection] = useState('next');
+  const touchStart = useRef(null);
 
   const goTo = useCallback((index, nextDirection = 'next') => {
     setDirection(nextDirection);
@@ -27,8 +31,41 @@ function Presentation({ presentation, Design }) {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [goTo, navigate, next, previous, slides.length]);
 
+  const onTouchStart = useCallback(event => {
+    if (event.touches.length !== 1) {
+      touchStart.current = null;
+      return;
+    }
+
+    const touch = event.touches[0];
+    touchStart.current = { x: touch.clientX, y: touch.clientY };
+  }, []);
+
+  const onTouchEnd = useCallback(event => {
+    const start = touchStart.current;
+    touchStart.current = null;
+    if (!start || event.changedTouches.length !== 1) return;
+
+    const touch = event.changedTouches[0];
+    const deltaX = touch.clientX - start.x;
+    const deltaY = touch.clientY - start.y;
+
+    if (Math.abs(deltaX) < SWIPE_THRESHOLD || Math.abs(deltaX) < Math.abs(deltaY) * SWIPE_DIRECTION_RATIO) return;
+    if (deltaX < 0) next();
+    else previous();
+  }, [next, previous]);
+
   const slide = slides[current];
-  return <Design slide={slide} current={current} total={slides.length} direction={direction} onClose={() => navigate('/')} />;
+  return <Design
+    slide={slide}
+    current={current}
+    total={slides.length}
+    direction={direction}
+    onClose={() => navigate('/')}
+    onTouchStart={onTouchStart}
+    onTouchEnd={onTouchEnd}
+    onTouchCancel={() => { touchStart.current = null; }}
+  />;
 }
 
 export default Presentation;

@@ -12,6 +12,7 @@
   grid-template-rows: 58px 1fr 56px;
   padding: 0 clamp(28px, 4vw, 70px);
   overflow: hidden;
+  touch-action: pan-y;
   background: var(--paper);
   color: var(--ink);
   font-family: 'NanumSquareNeo', 'Noto Sans KR', Pretendard, sans-serif;
