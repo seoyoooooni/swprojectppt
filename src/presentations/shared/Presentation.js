@@ -55,6 +55,11 @@ function Presentation({ presentation, Design }) {
     else previous();
   }, [next, previous]);
 
+  const onClick = useCallback(event => {
+    if (event.target.closest('button, a, input, select, textarea, [role="button"]')) return;
+    next();
+  }, [next]);
+
   const slide = slides[current];
   return <Design
     slide={slide}
@@ -62,6 +67,7 @@ function Presentation({ presentation, Design }) {
     total={slides.length}
     direction={direction}
     onClose={() => navigate('/')}
+    onClick={onClick}
     onTouchStart={onTouchStart}
     onTouchEnd={onTouchEnd}
     onTouchCancel={() => { touchStart.current = null; }}

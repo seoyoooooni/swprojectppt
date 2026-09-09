@@ -40,3 +40,18 @@ test('모바일에서 좌우 스와이프로 슬라이드를 이동하고 세로
   fireEvent.touchEnd(viewer, { changedTouches: [{ clientX: 180, clientY: 220 }] });
   expect(screen.getByText('첫 내용')).toBeInTheDocument();
 });
+
+test('발표 화면을 마우스로 클릭하면 다음 슬라이드로 이동한다', () => {
+  const presentation = { slides: [
+    { type: 'cover', title: '첫 슬라이드', description: '첫 내용' },
+    { type: 'bullets', title: '둘째 슬라이드', items: ['둘째 내용'] },
+  ] };
+  render(<MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><Presentation presentation={presentation} Design={Design} /></MemoryRouter>);
+
+  const viewer = screen.getByRole('main');
+  fireEvent.click(viewer);
+  expect(screen.getByText('둘째 내용')).toBeInTheDocument();
+
+  fireEvent.click(viewer);
+  expect(screen.getByText('둘째 내용')).toBeInTheDocument();
+});

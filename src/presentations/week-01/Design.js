@@ -9,11 +9,12 @@ function PresentationControls({ current, total }) {
   );
 }
 
-function Design({ slide, current, total, direction, onClose, onTouchStart, onTouchEnd, onTouchCancel }) {
+function Design({ slide, current, total, direction, onClose, onClick, onTouchStart, onTouchEnd, onTouchCancel }) {
   return (
     <main
       className="week01-presentation"
       aria-live="polite"
+      onClick={onClick}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
       onTouchCancel={onTouchCancel}
